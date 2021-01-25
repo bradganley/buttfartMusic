@@ -39,7 +39,7 @@ function App() {
         </TableHead>
         <TableBody>
           {rows.map(row => 
-            ( <TableRow key={row.artist}>
+            ( <TableRow hover key={row.artist}>
             <TableCell align="center">
               <Tooltip enterTouchDelay='1' leaveTouchDelay='2000' placement="bottom-end" title={row.genre} interactive arrow>
               <div>{row.artist}</div>
@@ -55,6 +55,7 @@ function App() {
         </TableBody>
       </Table>
       </TableContainer>
+      <center><Button variant="outlined" color="secondary" onClick={() => window.location.reload()}>Reload Data</Button></center>
       </Container> 
   );
 }
