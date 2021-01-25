@@ -41,7 +41,7 @@ function App() {
           {rows.map(row => 
             ( <TableRow key={row.artist}>
             <TableCell align="center">
-              <Tooltip placement="bottom-end" title={row.genre} interactive arrow>
+              <Tooltip enterTouchDelay='1' leaveTouchDelay='2000' placement="bottom-end" title={row.genre} interactive arrow>
               <div>{row.artist}</div>
               </Tooltip>
             </TableCell>
