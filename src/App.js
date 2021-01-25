@@ -46,10 +46,10 @@ function App() {
               </Tooltip>
             </TableCell>
             <TableCell align="center">
-            <Button disabled={!row.ttLink} variant="contained" onClick={()=> window.open(row.ttLink, 'tiktok')}>TikTok</Button>
+            <Button disabled={!row.ttLink} variant="outlined" color='default' onClick={()=> window.open(row.ttLink, 'tiktok')}>TikTok</Button>
             </TableCell>
-            <TableCell align="center"><Button disabled={!row.spotifyLink} variant="contained" onClick={()=> window.open(row.spotifyLink, 'Spotify')}>Spotify</Button></TableCell>
-            <TableCell align="center"><Button disabled={!row.ytLink} variant="contained" onClick={()=> window.open(row.ytLink, 'Youtube')}>Youtube</Button></TableCell>
+            <TableCell align="center"><Button disabled={!row.spotifyLink} variant="outlined" color='primary' onClick={()=> window.open(row.spotifyLink, 'Spotify')}>Spotify</Button></TableCell>
+            <TableCell align="center"><Button disabled={!row.ytLink} variant="outlined" color='secondary' onClick={()=> window.open(row.ytLink, 'Youtube')}>Youtube</Button></TableCell>
           </TableRow> )
           )}
         </TableBody>
