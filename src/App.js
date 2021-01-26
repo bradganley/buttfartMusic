@@ -23,7 +23,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 //  assembleArtist('Adjust the Sails', 'https://vm.tiktok.com/ZMJt7gcnW/', 'https://hypeddit.com/link/oxn8il#spotify','https://youtu.be/5mMbAQ9jew0', 'Midwest Emo'),
 //  assembleArtist('The Upfux', 'https://www.tiktok.com/@juul.thief?lang=en','https://open.spotify.com/artist/5xdshsLn3F7WL9FhC3aJoU?si=C-gXpeSrRP2Sw20pGjE-3w', null, 'Aggressively Ska')
 //]
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -39,16 +38,17 @@ class App extends React.Component {
   }
   render(){
     let {artists} = this.state;
+    const smoll = { height: "10px", padding: "3px" };
   return (
       <Container maxWidth="md">
       <TableContainer component={Paper}>
-      <Table>
+      <Table style={{'background-color': '#f5f5f5'}}>
         <TableHead>
-          <TableRow>
-            <TableCell variant="head" align="center"><b>Artist</b></TableCell>
-            <TableCell variant="head" align="center"><b>TikTok Profile Link</b></TableCell>
-            <TableCell align="center"><b>Spotify Link</b></TableCell>
-            <TableCell align="center"><b>Youtube Link</b></TableCell>
+          <TableRow style={{'background-color': '#494949', 'outline-color':'white'}}>
+            <TableCell style={{...smoll, 'color':'white'}} variant="head" align="center"><b>Artist</b></TableCell>
+            <TableCell style={{...smoll, 'color':'white'}} variant="head" align="center"><b>TikTok Profile Link</b></TableCell>
+            <TableCell style={{...smoll, 'color':'white'}} align="center"><b>Spotify Link</b></TableCell>
+            <TableCell style={{...smoll, 'color':'white'}} align="center"><b>Youtube Link</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -68,17 +68,17 @@ class App extends React.Component {
           )*/}
           {Object.entries(artists).map(([key, artist]) => {
               return ( 
-                <TableRow hover key={artist.name}>
-                <TableCell align="center">
+                <TableRow hover key={artist.name}  style={smoll}>
+                <TableCell align="center" style={smoll}>
                   <Tooltip enterTouchDelay={1} leaveTouchDelay={2000} placement="bottom-end" title={artist.genre} interactive arrow>
-                  <div>{artist.name}</div>
+                  <div style={{'font-size':'20', 'font-weight':''}}>{artist.name}</div>
                   </Tooltip>
                 </TableCell>
-                <TableCell align="center">
-                <Button disabled={!artist.tiktok} variant="contained" color='default' onClick={()=> window.open(artist.tiktok, 'tiktok')}>TikTok</Button>
+                <TableCell style={smoll} align="center">
+                <Button style={{height:'20px', 'color':'white', 'background-color':'#69C9D0'}} size='small' disabled={!artist.tiktok} variant="contained" color='default' onClick={()=> window.open(artist.tiktok, 'tiktok')}>TikTok</Button>
                 </TableCell>
-                <TableCell align="center"><Button disabled={!artist.spotify} variant="contained" color='primary' onClick={()=> window.open(artist.spotify, 'Spotify')}>Spotify</Button></TableCell>
-                <TableCell align="center"><Button disabled={!artist.yt} variant="contained" color='secondary' onClick={()=> window.open(artist.yt, 'Youtube')}>Youtube</Button></TableCell>
+                <TableCell style={smoll} align="center"><Button style={{height:'20px', 'background-color':'#1DB954'}} size='small' disabled={!artist.spotify} variant="contained" onClick={()=> window.open(artist.spotify, 'Spotify')}>Spotify</Button></TableCell>
+                <TableCell style={smoll} align="center"><Button style={{height:'20px', 'background-color':' #c4302b'}} size='small' disabled={!artist.yt} variant="contained" color='secondary' onClick={()=> window.open(artist.yt, 'Youtube')}>Youtube</Button></TableCell>
               </TableRow> );
           })}
             
@@ -86,7 +86,7 @@ class App extends React.Component {
         </TableBody>
       </Table>
       </TableContainer>
-      <center><Button variant="outlined" color="secondary" onClick={() => window.location.reload()}>Reload Data</Button></center>
+      <center><Button size='small' variant="outlined" color="secondary" onClick={() => window.location.reload()}>Reload Data</Button></center>
       </Container> 
       );
   }
