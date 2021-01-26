@@ -8,18 +8,21 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
 import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import AutorenewRoundedIcon from '@material-ui/icons/AutorenewRounded';
+import Snackbar from '@material-ui/core/Snackbar';
+
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {artists: {}}
+    this.state = {artists: {}, showSnack: false}
   }
   async getDb(){
     const res = await fetch('https://buttfartmusic-default-rtdb.firebaseio.com/.json');
     const data = await res.json();
-    this.setState({artists: data})
+    this.setState({artists: data, showSnack: true})
   }
   componentDidMount(){
     this.getDb();
@@ -28,10 +31,10 @@ class App extends React.Component {
     let {artists} = this.state;
     const smoll = { height: "10px", padding: "3px" };
   return (
-      <Container maxWidth="md">
-        <br />
-      <TableContainer component={Paper}>
-      <Table style={{'background-color': '#f5f5f5'}}>
+    <center style={{'padding':'15px'}}>
+      <Paper style={{maxWidth:'900px','background-color': '#7d7d7d', 'padding':'15px'}} elevation={10}>
+      <TableContainer style={{'maxWidth':'800px', 'padding':'15px'}}>
+      <Table style={{'background-color': '#f5f5f5','padding':'5px'}}>
         <TableHead>
           <TableRow style={{'background-color': '#494949', 'outline-color':'white'}}>
             <TableCell style={{...smoll, 'color':'white'}} variant="head" align="center"><b>Artist</b></TableCell>
@@ -45,7 +48,7 @@ class App extends React.Component {
               return ( 
                 <TableRow hover key={artist.name}  style={smoll}>
                 <TableCell align="center" style={smoll}>
-                  <Tooltip enterTouchDelay={1} leaveTouchDelay={2000} placement="bottom-end" title={artist.genre} interactive arrow>
+                  <Tooltip enterTouchDelay={1} leaveTouchDelay={2000} placement="bottom" title={artist.genre} interactive>
                   <div style={{'font-size':'20'}}>{artist.name}</div>
                   </Tooltip>
                 </TableCell>
@@ -58,9 +61,15 @@ class App extends React.Component {
           })}
         </TableBody>
       </Table>
-      </TableContainer><br />
-      <center><Button size='small' variant="outlined" color="secondary" onClick={() => this.getDb() }>Reload Data</Button></center><br />
-      </Container> 
+      </TableContainer>
+      <IconButton size='small' variant="outlined" color="primary" onClick={() => this.getDb() }><AutorenewRoundedIcon /></IconButton>
+      </Paper> 
+      <Paper style={{maxWidth:'500px','background-color': '#052323', 'padding':'15px'}} elevation={10}> 
+      <iframe title='spoofydoodle' src="https://open.spotify.com/embed/playlist/1Gudo5j6pxf86CiP7E5Atq" width="400" height="600" frameborder="0" allowtransparency="false" allow="encrypted-media"></iframe>
+      </Paper>
+      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} message="List updated" open={this.state.showSnack} autoHideDuration={5000} onClose={() => this.setState({showSnack: false})} />
+    </center>
+
       );
   }
 }
