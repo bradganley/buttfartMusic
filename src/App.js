@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
 
-
+import React from 'react'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,18 +13,32 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const assembleArtist = (artist, ttLink, spotifyLink, ytLink, genre) =>{
-  return { artist, ttLink, spotifyLink, ytLink, genre }
-}
+//const assembleArtist = (artist, ttLink, spotifyLink, ytLink, genre) =>{
+//return { artist, ttLink, spotifyLink, ytLink, genre }
+//}
 
-const rows = [
-  assembleArtist('Broken at Best', 'https://www.tiktok.com/@brokenatbest', 'https://open.spotify.com/artist/4CJazbFqEso8BiGP10gz9L?si=V7_KtkpZQyWmFjx5gJb5xg','https://www.youtube.com/channel/UCnUNOc1gKJ0tWfD9MaY_Fvw', 'Acoustic'),
-  assembleArtist('Skatune Network ', 'https://www.tiktok.com/@skatunenetwork', 'https://open.spotify.com/artist/7Gas5IrI1Y8PSrJPyRkwtC?si=k7Xey1B6RV2OQPCyYYjO_g','https://www.youtube.com/channel/UCji2l5wcs6GoYJY1GgG_slQ', 'Ska'),
-  assembleArtist('Adjust the Sails', 'https://vm.tiktok.com/ZMJt7gcnW/', 'https://hypeddit.com/link/oxn8il#spotify','https://youtu.be/5mMbAQ9jew0', 'Midwest Emo'),
-  assembleArtist('The Upfux', 'https://www.tiktok.com/@juul.thief?lang=en','https://open.spotify.com/artist/5xdshsLn3F7WL9FhC3aJoU?si=C-gXpeSrRP2Sw20pGjE-3w', null, 'Aggressively Ska')
-]
+//const rows = [
+//  assembleArtist('Broken at Best', 'https://www.tiktok.com/@brokenatbest', 'https://open.spotify.com/artist/4CJazbFqEso8BiGP10gz9L?si=V7_KtkpZQyWmFjx5gJb5xg','https://www.youtube.com/channel/UCnUNOc1gKJ0tWfD9MaY_Fvw', 'Acoustic'),
+//  assembleArtist('Skatune Network ', 'https://www.tiktok.com/@skatunenetwork', 'https://open.spotify.com/artist/7Gas5IrI1Y8PSrJPyRkwtC?si=k7Xey1B6RV2OQPCyYYjO_g','https://www.youtube.com/channel/UCji2l5wcs6GoYJY1GgG_slQ', 'Ska'),
+//  assembleArtist('Adjust the Sails', 'https://vm.tiktok.com/ZMJt7gcnW/', 'https://hypeddit.com/link/oxn8il#spotify','https://youtu.be/5mMbAQ9jew0', 'Midwest Emo'),
+//  assembleArtist('The Upfux', 'https://www.tiktok.com/@juul.thief?lang=en','https://open.spotify.com/artist/5xdshsLn3F7WL9FhC3aJoU?si=C-gXpeSrRP2Sw20pGjE-3w', null, 'Aggressively Ska')
+//]
 
-function App() {
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {artists: {}}
+  }
+  async getDb(){
+    const res = await fetch('https://buttfartmusic-default-rtdb.firebaseio.com/.json');
+    const data = await res.json();
+    this.setState({artists: data})
+  }
+  componentDidMount(){
+    this.getDb();
+  }
+  render(){
+    let {artists} = this.state;
   return (
       <Container maxWidth="md">
       <TableContainer component={Paper}>
@@ -38,7 +52,7 @@ function App() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => 
+          {/*rows.map(row => 
             ( <TableRow hover key={row.artist}>
             <TableCell align="center">
               <Tooltip enterTouchDelay='1' leaveTouchDelay='2000' placement="bottom-end" title={row.genre} interactive arrow>
@@ -51,13 +65,32 @@ function App() {
             <TableCell align="center"><Button disabled={!row.spotifyLink} variant="outlined" color='primary' onClick={()=> window.open(row.spotifyLink, 'Spotify')}>Spotify</Button></TableCell>
             <TableCell align="center"><Button disabled={!row.ytLink} variant="outlined" color='secondary' onClick={()=> window.open(row.ytLink, 'Youtube')}>Youtube</Button></TableCell>
           </TableRow> )
-          )}
+          )*/}
+          {Object.entries(artists).map(([key, artist]) => {
+              return ( 
+                <TableRow hover key={artist.name}>
+                <TableCell align="center">
+                  <Tooltip enterTouchDelay={1} leaveTouchDelay={2000} placement="bottom-end" title={artist.genre} interactive arrow>
+                  <div>{artist.name}</div>
+                  </Tooltip>
+                </TableCell>
+                <TableCell align="center">
+                <Button disabled={!artist.tiktok} variant="outlined" color='default' onClick={()=> window.open(artist.tiktok, 'tiktok')}>TikTok</Button>
+                </TableCell>
+                <TableCell align="center"><Button disabled={!artist.spotify} variant="outlined" color='primary' onClick={()=> window.open(artist.spotify, 'Spotify')}>Spotify</Button></TableCell>
+                <TableCell align="center"><Button disabled={!artist.yt} variant="outlined" color='secondary' onClick={()=> window.open(artist.yt, 'Youtube')}>Youtube</Button></TableCell>
+              </TableRow> );
+          })}
+            
+          
         </TableBody>
       </Table>
       </TableContainer>
       <center><Button variant="outlined" color="secondary" onClick={() => window.location.reload()}>Reload Data</Button></center>
       </Container> 
-  );
+      );
+  }
 }
+  
 
 export default App;
