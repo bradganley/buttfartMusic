@@ -59,7 +59,7 @@ class App extends React.Component {
         </TableBody>
       </Table>
       </TableContainer><br />
-      <center><Button size='small' variant="outlined" color="secondary" onClick={() => window.location.reload()}>Reload Data</Button></center><br />
+      <center><Button size='small' variant="outlined" color="secondary" onClick={() => this.getDb() }>Reload Data</Button></center><br />
       </Container> 
       );
   }
