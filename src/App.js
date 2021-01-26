@@ -41,6 +41,7 @@ class App extends React.Component {
     const smoll = { height: "10px", padding: "3px" };
   return (
       <Container maxWidth="md">
+        <br />
       <TableContainer component={Paper}>
       <Table style={{'background-color': '#f5f5f5'}}>
         <TableHead>
@@ -81,12 +82,10 @@ class App extends React.Component {
                 <TableCell style={smoll} align="center"><Button style={{height:'20px', 'background-color':' #c4302b'}} size='small' disabled={!artist.yt} variant="contained" color='secondary' onClick={()=> window.open(artist.yt, 'Youtube')}>Youtube</Button></TableCell>
               </TableRow> );
           })}
-            
-          
         </TableBody>
       </Table>
-      </TableContainer>
-      <center><Button size='small' variant="outlined" color="secondary" onClick={() => window.location.reload()}>Reload Data</Button></center>
+      </TableContainer><br />
+      <center><Button size='small' variant="outlined" color="secondary" onClick={() => window.location.reload()}>Reload Data</Button></center><br />
       </Container> 
       );
   }
