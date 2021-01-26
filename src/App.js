@@ -71,7 +71,7 @@ class App extends React.Component {
                 <TableRow hover key={artist.name}  style={smoll}>
                 <TableCell align="center" style={smoll}>
                   <Tooltip enterTouchDelay={1} leaveTouchDelay={2000} placement="bottom-end" title={artist.genre} interactive arrow>
-                  <div style={{'font-size':'20', 'font-weight':''}}>{artist.name}</div>
+                  <div style={{'font-size':'20'}}>{artist.name}</div>
                   </Tooltip>
                 </TableCell>
                 <TableCell style={smoll} align="center">
