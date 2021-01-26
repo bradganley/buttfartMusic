@@ -75,10 +75,10 @@ class App extends React.Component {
                   </Tooltip>
                 </TableCell>
                 <TableCell align="center">
-                <Button disabled={!artist.tiktok} variant="outlined" color='default' onClick={()=> window.open(artist.tiktok, 'tiktok')}>TikTok</Button>
+                <Button disabled={!artist.tiktok} variant="contained" color='default' onClick={()=> window.open(artist.tiktok, 'tiktok')}>TikTok</Button>
                 </TableCell>
-                <TableCell align="center"><Button disabled={!artist.spotify} variant="outlined" color='primary' onClick={()=> window.open(artist.spotify, 'Spotify')}>Spotify</Button></TableCell>
-                <TableCell align="center"><Button disabled={!artist.yt} variant="outlined" color='secondary' onClick={()=> window.open(artist.yt, 'Youtube')}>Youtube</Button></TableCell>
+                <TableCell align="center"><Button disabled={!artist.spotify} variant="contained" color='primary' onClick={()=> window.open(artist.spotify, 'Spotify')}>Spotify</Button></TableCell>
+                <TableCell align="center"><Button disabled={!artist.yt} variant="contained" color='secondary' onClick={()=> window.open(artist.yt, 'Youtube')}>Youtube</Button></TableCell>
               </TableRow> );
           })}
             
