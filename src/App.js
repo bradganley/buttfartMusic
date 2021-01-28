@@ -7,17 +7,17 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
 import AutorenewRoundedIcon from '@material-ui/icons/AutorenewRounded';
 import Snackbar from '@material-ui/core/Snackbar';
 import { AwesomeButton } from 'react-awesome-button';
+import {Collapse} from 'react-collapse'
 import styles from 'react-awesome-button/src/styles/themes/theme-c137';
 
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {artists: {}, showSnack: false}
+    this.state = {artists: {}, showSnack: false, spotLook: false}
   }
   async getDb(){
     const res = await fetch('https://buttfartmusic-default-rtdb.firebaseio.com/.json');
@@ -60,12 +60,14 @@ class App extends React.Component {
           })}
         </TableBody>
       </Table>
+      <AwesomeButton onPress={() => this.getDb() }><AutorenewRoundedIcon /></AwesomeButton>
+      <AwesomeButton onPress={() => this.setState({...this.state, spotLook: !this.state.spotLook})} type="secondary">Spotify Playlist</AwesomeButton>
       </TableContainer>
-      <IconButton fart={styles} size='small' variant="outlined" onClick={() => this.getDb() }><AutorenewRoundedIcon /></IconButton>
-      <center><br /><iframe title='spoofydoodle' src="https://open.spotify.com/embed/playlist/1Gudo5j6pxf86CiP7E5Atq" width="750" height="600" frameBorder="0" allowtransparency="false" allow="encrypted-media"></iframe></center>
+      <Collapse isOpened={this.state.spotLook}>
+      <center><iframe fart={styles} title='spoofydoodle' src="https://open.spotify.com/embed/playlist/1Gudo5j6pxf86CiP7E5Atq" width="400" height="600" frameBorder="0" allowtransparency="false" allow="encrypted-media"></iframe></center>
+      </Collapse>
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} message="List updated" open={this.state.showSnack} autoHideDuration={5000} onClose={() => this.setState({showSnack: false})} />
     </center>
-
       );
   }
 }
