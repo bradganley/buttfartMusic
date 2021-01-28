@@ -56,7 +56,7 @@ class App extends React.Component {
                 <TableCell style={smoll} align="center">
                 <AwesomeButton size='small' disabled={!artist.tiktok} type='primary' onPress={()=> window.open(artist.tiktok, 'tiktok')}>TikTok</AwesomeButton>
                 </TableCell>
-                <TableCell style={smoll} align="center"><AwesomeButton cssModule={style} size='small' disabled={!artist.spotify} type='secondary' onPress={()=> window.open(artist.spotify, 'tiktok')}>Spotify</AwesomeButton></TableCell>
+                <TableCell style={smoll} align="center"><AwesomeButton cssModule={styles} size='small' disabled={!artist.spotify} type='secondary' onPress={()=> window.open(artist.spotify, 'tiktok')}>Spotify</AwesomeButton></TableCell>
                 <TableCell style={smoll} align="center"><AwesomeButton size='small' disabled={!artist.yt} type='link' onPress={()=> window.open(artist.yt, 'tiktok')}>Youtube</AwesomeButton></TableCell>
               </TableRow> );
           })}
