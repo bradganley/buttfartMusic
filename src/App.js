@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react'
+import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,14 +10,15 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AutorenewRoundedIcon from '@material-ui/icons/AutorenewRounded';
 import Snackbar from '@material-ui/core/Snackbar';
 import { AwesomeButton } from 'react-awesome-button';
-import {Collapse} from 'react-collapse'
+import {Collapse} from 'react-collapse';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import Paper from '@material-ui/core/Paper';
 import styles from 'react-awesome-button/src/styles/themes/theme-c137';
-
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {artists: {}, showSnack: false, spotLook: false}
+    this.state = {artists: {}, showSnack: false, spotLook: false, modalShow: false}
   }
   async getDb(){
     const res = await fetch('https://buttfartmusic-default-rtdb.firebaseio.com/.json');
@@ -62,7 +63,14 @@ class App extends React.Component {
       </Table>
       <AwesomeButton onPress={() => this.getDb() }><AutorenewRoundedIcon /></AwesomeButton>
       <AwesomeButton onPress={() => this.setState({...this.state, spotLook: !this.state.spotLook})} type="secondary">Spotify Playlist</AwesomeButton>
+      <AwesomeButton onPress={() => this.setState({...this.state, modalShow: !this.state.modalShow}) }><HelpOutlineIcon /></AwesomeButton>
       </TableContainer>
+      <Collapse isOpened={this.state.modalShow}>
+        <Paper style={{maxWidth:"500px"}} elevation="20" variant="outlined">
+          <p>Hi there. I'm Brad. I like making and watching TikToks. Sometimes, I find a musician on TikTok and, if I'm not careful, I lose them forever. Here on this living list, I grab and present the available links for artists I find and think are just real good.</p>
+          <p>You can email suggestions, problems, or whatever else to bradganley@pm.me</p>  
+        </Paper>
+        </Collapse>
       <Collapse isOpened={this.state.spotLook}>
       <center><iframe fart={styles} title='spoofydoodle' src="https://open.spotify.com/embed/playlist/1Gudo5j6pxf86CiP7E5Atq" width="400" height="600" frameBorder="0" allowtransparency="false" allow="encrypted-media"></iframe></center>
       </Collapse>

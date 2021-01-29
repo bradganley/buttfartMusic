@@ -2892,6 +2892,13 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
+boron@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/boron/-/boron-0.2.3.tgz#63a1800771c0cb2b0d8f616687c62c1248cfb8a0"
+  integrity sha1-Y6GAB3HAyysNj2Fmh8YsEkjPuKA=
+  dependencies:
+    domkit "^0.0.1"
+
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -4319,6 +4326,11 @@ domhandler@^2.3.0:
   integrity sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
   dependencies:
     domelementtype "1"
+
+domkit@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/domkit/-/domkit-0.0.1.tgz#88399d586794efc1154fec6c22cfe50f19bd4dbb"
+  integrity sha1-iDmdWGeU78EVT+xsIs/lDxm9Tbs=
 
 domutils@^1.5.1, domutils@^1.7.0:
   version "1.7.0"
